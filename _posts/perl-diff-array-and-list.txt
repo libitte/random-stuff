@@ -1,0 +1,40 @@
+PerlのArrayとListでは挙動が異なるので注意が必要です
+
+Perlのarraysとlistsは似ていますが全く異なるものです。
+どこがどう違うのかはよくまとめられた記事(http://friedo.com/blog/2013/07/arrays-vs-lists-in-perl)がありましたのでこちらを見ていただくとして、
+ここでは自分用にメソッドの戻り値としてarraysとlistsそれぞれを指定したときに、
+スカラーコンテキストでそれらの値を取得した時の振る舞いの違いを書き留めておきます。
+
+`get_list` と `get_array` 2つのメソッドの戻り値をそれぞれスカラーとして受け取った場合、
+どのような戻り値が返るでしょうか。
+
+[perl]
+
+sub get_list {
+    my ($one, $two, $three) = (3, 5, 8);
+    return ($one, $two, $three);
+}
+
+sub get_array {
+    my @array = qw(3 5 8);
+    return @array;
+}
+
+[/perl]
+
+結果はこのとおりです。
+
+[perl]
+
+my $scalar_from_list = get_list();
+#=> 8
+
+my $scalar_from_array = get_array();
+#=> 3
+
+[/perl]
+
+* listsを戻り値にした関数をスカラーで受け取ると、listsの末尾の値が代入されます。
+* arraysを戻り値にした関数をスカラーで受け取ると、arraysの要素数が代入されます。
+
+
