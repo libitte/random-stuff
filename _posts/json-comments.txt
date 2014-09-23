@@ -1,0 +1,36 @@
+JSON にコメント(っぽいもの)を書く方法
+
+JSONは便利ですが、一点不満なところがあるとすればそれはコメントが書けないことです。
+
+例えば以下の様なJSONがある場合、
+JavaScriptのように `//` などでコメントを表現しようとするとエラーとなります。
+
+[json]
+{
+  "startAt":0, // 開始位置
+  "maxResults":18,
+  "total":18
+}
+[/json]
+
+The Hack
+
+これを解消するためにはJSONの"同じキー文字列の要素が重複した時には最後に定義したものが優先される "という特性を利用するとよいらしいです。
+これを利用すると下記のような形でコメントが残せます。
+
+[json]
+{
+  "startAt":"開始位置",
+  "startAt":0,
+  "maxResults":"最大結果数",
+  "maxResults":18,
+  "total":"合計",
+  "total":18
+}
+[/json]
+
+Adding Comments to JSON
+http://fadefade.com/json-comments.html
+
+http://dev.classmethod.jp/etc/adding-comment-to-json/
+

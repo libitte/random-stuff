@@ -1,0 +1,201 @@
+YAPC::Asia TOKYO 2014 に参加してきました
+
+
+YAPC::Asia TOKYO 2014 に参加してきました。
+今回は2回目の参加でした。
+セッションを聞いて拾った単語などをメモしつつ、
+LTで発表させていただいたので、その資料も貼っておこうと思います。
+
+=== Perl::Lint - Yet Another Perl Source Code Linter
+@moznion氏によるセッション
+
+source code linter はCの時代から存在する(1979)
+Compiler::Lexer(@goccy54氏)はC++で作られていて速い
+要素数が少ない時にはgrepで十分だが、多くなってくるとList::Util::anyのほうが速い
+POPO とはPlain Old Perl Objectのこととみつけたり
+Perl::Criticはno criticオプションがつかえる
+AST parser
+
+=== Scala in Perl Company: Hatena
+@hakobe氏によるセッション
+Perlのいいところ(10年前は少なくとも)
+少ない記述で書ける。
+充実したweb開発基盤がある。
+
+Perlで難しいこと
+1. 型がない
+2. 呼び出し元の変更
+
+ScalaはScalable Languageのこととみつけたり
+ScalaはJava のライブラリを使うことができる
+editorはinteliJとかemacsとかおこのみで
+
+Scalaのいいところ
+コードの変更が安心
+レビューの時に安心
+
+Scalaのつらいところ
+コンパイル時間が長すぎる
+言語仕様が多くて学習しにくい
+
+Scala Matsuriというものがある
+
+
+=== Perlあるある
+https://metacpan.org/pod/Web::Scraper
+http://www.awstats.org/
+https://metacpan.org/pod/Carp::Always
+POEはポーと読む
+done is better than perfect
+とりあえず動いたらcommitしてみる。
+コードを綺麗にするとかはその後にコミットを重ねていけば良い。
+
+
+=== Mobile Application Development for Perl Mongers [ninjinkun x gfx]
+
+MVVMをよく使う
+publish するときはデモのgifをつけるのが一般的
+
+AppCode
+http://developer.smartnews.be/blog/2013/07/16/appcode-increases-objective-c-productivity/
+アプリはbugがあってもrollbackできない
+
+git-flow
+
+continuous integration
+engineer は問題がないと生きていけない
+good problem がたくさんあるところにいくのがよい
+
+AppCode
+http://www.jetbrains.com/objc/
+
+android studio
+https://developer.android.com/sdk/installing/studio.html
+
+UI の作り方は iOS のほうがやりやすい
+
+
+=== そんなにビッグでもないデータ処理手法の話
+データ量の最適な見積もりは行わない。 -> 上下する
+Sub GB -> use RDBMS
+PB or More -> use Hadoop and Storm
+そんなにビッグでないデータ == GB to TB: How large?
+
+分散ファイルシステム
+Java, Scala
+
+SQL: Hive, Impala, Drill, Presto, 
+Others: Pig, Cascading
+^^ SQL のほうがトレンド
+
+MapReduce
+Map + Combine + Shuffle + Reduce
+
+- Apache Spark
+オンメモリで動くプロセッサフレームワーク
+DAGつかう
+
+- Apache Tez
+ほぼ同じようにMapReduceの置換を狙ったもの
+DAGつかう
+
+
+distribution 含めて linux と呼ぶように
+Hadoop とよぶ
+
+BigData as a service
+
+JVM に支配されている
+
+
+===
+他にもいろいろなセッションを聞いたのですが、立ち見とかで単語のメモとかできず・・・。
+
+Perl Mongersのためのstrace入門
+http://www.slideshare.net/zentooo/strace-for-perl-mongers
+
+を聞いて今まで経験した問題を解決するときにstraceを使ったらもっと効率的に出来たのに、と思いました。
+
+
+=== O2O/IoT/Wearable時代におけるWeb以外のネットワーク技術入門
+
+mqtt
+
+pubsub
+broker hub のことをまわりは知っている
+
+finance stock ibm currentcurrency
+
+http
+mqtt
+
+polling
+long polling
+request ごとの隙間がある
+
+web socket
+
+新しいプロトコルとして
+mqtt
+coap
+
+dns service discovery
+bonjure
+
+プレゼンスはスケールしない
+facebook messenger 作った人
+
+web socket +redis でもいい
+
+perl mqtt
+Sango
+
+bluetooth low battery
+Iot iot
+
+peripheral 実はこっちがサーバ
+central
+
+ibeacon 近くにあることはわかるが距離、方角などは分からない
+
+情報消費 PICK みたいなことが次くるかも。
+ibeaconはhttp get的なものになってくるのではないか。
+
+ビーコン
+
+
+=== ウェッブエンジニアのローレベルプログラミング
+cho45氏
+
+arm linuxを勉強するとよい
+r0-r15
+arm linux abi
+gpio
+I2C
+bare metal
+
+
+=== LT(2日目)
+
+LTに参加させていただき、自作したモジュールを紹介させていただきました。
+
+https://speakerdeck.com/foble/yapcasia-2014-08-30-lt-libitte#
+
+このモジュールはImage::Magickに依存しています。
+Image::Magickはインストールめんどくさい、等色々あるのですが、
+以下3点の理由によりこれを選択しました。
+十分枯れている
+Imager, GD::Image, Image::Imlib2など他の画像編集用モジュールと比べて速度的に問題がない
+エラー処理を行ってくれているため安心
+
+このモジュールは画像ファイルから色名を抽出する際に、全pixelsを取得して解析しているため若干時間がかかるという問題があります。
+こちらはpixels数を間引くようなオプションを追加し、場面に応じて処理の高速化をしたいと考えています。
+
+
+=== まとめ
+
+YAPC::Asia Tokyo 2014 を最高に楽しむことができました。
+運営に携わられた方々は本当にお疲れ様でした。ありがとうございました。
+
+
+

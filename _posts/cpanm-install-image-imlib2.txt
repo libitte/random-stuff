@@ -1,0 +1,18 @@
+
+wget http://downloads.sourceforge.net/enlightenment/imlib2-1.4.5.tar.bz2
+cd imlib2-1.4.5.tar.bz2
+bzip2 -d imlib2-1.4.5.tar.bz2
+tar xvf imlib2-1.4.5.tar
+
+
+cd imlib2-1.4.5
+./configure --prefix=/usr/local/imlib2 --without-x
+make && make install
+
+.bashrc
+export PATH=/usr/local/imlib2/bin:$PATH
+
+cpanm install Image::Imlib2
+ 
+ 
+http://makeitsmartjp.com/2012/07/cpanm-image-imlib2-install.html

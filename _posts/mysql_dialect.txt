@@ -1,0 +1,33 @@
+MySQL int(10) の意味するところ
+
+MySQLにおいてint(10)は整数データタイプの表示幅を10桁に指定するという意味になります。
+
+この表示幅はカラムに格納できる値の範囲及びカラムに指定された幅を超える値の表示される桁数を制限しません。
+例えばint(10)の場合、-2147483648から2147483648のint範囲をもち、10文字で許容された範囲外は10文字以上の文字を使って表示されます。
+
+ちなみにこのオプションは ZEROFILL という拡張属性が指定されなければ有効になりません。
+このオプションを使用することで、すなわちINT(5) ZEROFILLとすることで、4の値が00004として表示されます。
+
+create文例:
+```SQL
+CREATE TABLE `test` (
+    `id` int(10) unsigned NOT NULL DEFAULT '0',
+    `name` varchar(40) NOT NULL DEFAULT '',
+    `type` smallint(6) NOT NULL DEFAULT '0',
+    `status` tinyint(4) NOT NULL DEFAULT '0',
+    `created_on` int(10) unsigned NOT NULL DEFAULT '0',
+    `comment` text NOT NULL,
+    `path` varchar(16) DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `i1` (`type`,`created_on`)
+);
+```
+
+int(10)が使用されている例:
+
+```SQL
+    `id` int(10) unsigned NOT NULL DEFAULT '0',
+```
+
+参考
+http://dev.mysql.com/doc/refman/5.1/ja/numeric-types.html
