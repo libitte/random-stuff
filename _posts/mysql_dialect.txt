@@ -31,3 +31,4 @@ int(10)が使用されている例:
 
 参考
 http://dev.mysql.com/doc/refman/5.1/ja/numeric-types.html
+http://blog.clouder.jp/blog/2005/04/26/mysqlint1111/

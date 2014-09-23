@@ -1,0 +1,72 @@
+hubotをインストールする
+
+MacOS X にインストール
+
+まずはnodeをインストールします。
+
+[bash]
+#node
+$ PREFIX=$(brew --prefix)
+$ sudo mkdir -p $PREFIX/{share/man,bin,lib/node,include/node}
+$ sudo chown -R $USER $PREFIX/{share/man,bin,lib/node,include/node}
+$ brew install node
+[/bash]
+
+npm もインストールします。
+
+[bash]
+#npm
+$ curl https://www.npmjs.org/install.sh | sh
+[/bash]
+
+npm を使って、hubot coffee-script をインストールします。
+
+[bash]
+$  npm install -g hubot coffee-script
+[/bash]
+
+
+CentOS にインストール
+
+nodeのインストールをします。
+
+[bash]
+echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc
+echo 'export npm_config_userconfig=$HOME/.config/npmrc' >> ~/.bashrc
+. ~/.bashrc
+mkdir ~/.local
+mkdir ~/node-latest-install
+cd ~/node-latest-install
+curl http://nodejs.org/dist/node-latest.tar.gz | tar xz --strip-components=1
+./configure --prefix=~/.local
+make install
+[/bash]
+
+npmのインストールをします。
+
+[bash]
+curl https://www.npmjs.org/install.sh | sh
+[/bash]
+
+npm のインストールをします。
+
+[bash]
+$ npm install -g hubot coffee-script
+[/bash]
+
+redis もインストールしておきます。
+
+[bash]
+$ npm install redis
+[/bash]
+
+IRCサーバへデータを転送できるように設定します。
+
+このcentosサーバのポートがircサーバのポートに転送できる設定がなされていない場合には、
+centosサーバ上のポートがircサーバのポートに転送されるように設定して上げる必要があります。
+
+[bash]
+ssh -C -N -f -R ポート:ホスト:ホスト側ポート
+[/bash]
+
+

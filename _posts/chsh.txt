@@ -1,0 +1,11 @@
+ログインシェルを変更する
+
+Mac OS X ではdefaultのログインシェルは/bin/bashです。
+これをhomebrewなどで入れた他のシェルに切り替えたい場合にはchshを使います。
+
+bashに切り替える。
+
+chsh -s /bin/bash
+
+zshに切り替える。
+chsh -s /usr/local/bin/zsh
